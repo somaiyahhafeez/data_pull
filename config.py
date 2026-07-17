@@ -92,8 +92,8 @@ CALENDAR_REMINDERS = [
 ]
 
 # --- Alerting ---
-# ntfy.sh is a free, no-signup push notification service. Pick any
-# hard-to-guess topic name (it's public if someone knows the name) and
-# install the ntfy app (iOS/Android) or use a browser, subscribed to
-# that same topic, to receive alerts on your phone.
-NTFY_TOPIC = "reach-data-watch-CHANGE-ME-1234"
+# Alerts are sent as a single daily email digest via SMTP. The sending
+# account's credentials come from environment variables (GitHub Secrets:
+# SMTP_USER, SMTP_PASSWORD) -- never put a real password in this file.
+# Just set the address you want alerts sent TO:
+EMAIL_TO = "you@example.com"  # CHANGE-ME: your real inbox
