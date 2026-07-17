@@ -96,4 +96,4 @@ CALENDAR_REMINDERS = [
 # account's credentials come from environment variables (GitHub Secrets:
 # SMTP_USER, SMTP_PASSWORD) -- never put a real password in this file.
 # Just set the address you want alerts sent TO:
-EMAIL_TO = "you@example.com"  # CHANGE-ME: your real inbox
+EMAIL_TO = "sh4625@columbia.edu"  # CHANGE-ME: your real inbox
