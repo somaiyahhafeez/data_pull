@@ -1,0 +1,38 @@
+name: Data release watcher
+
+on:
+  schedule:
+    # Runs daily at 13:00 UTC (9am ET / 6am PT). Adjust to taste.
+    - cron: "0 13 * * *"
+  workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write  # needed so the workflow can commit the updated cache file
+
+jobs:
+  check-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run watcher
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python3 data_watcher.py
+
+      - name: Commit updated cache (if changed)
+        run: |
+          git config user.name "data-watcher-bot"
+          git config user.email "actions@github.com"
+          git add last_seen.json
+          git diff --cached --quiet || git commit -m "Update last_seen cache [skip ci]"
+          git push
