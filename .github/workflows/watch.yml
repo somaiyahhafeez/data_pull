@@ -27,6 +27,8 @@ jobs:
       - name: Run watcher
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         run: python3 data_watcher.py
 
       - name: Commit updated cache (if changed)
