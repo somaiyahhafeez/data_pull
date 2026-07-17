@@ -22,14 +22,18 @@ TRACKED_SERIES = {
     "CPI - All Items (national, SA)": "CPIAUCSL",
     "CPI - All Items Less Food & Energy (core)": "CPILFESL",
 
-    # --- Regional CPI ---
-    "CPI - Northeast Region": "CUUS0100SA0",
-    "CPI - Midwest Region": "CUUS0200SA0",
-    "CPI - South Region": "CUUS0300SA0",
-    "CPI - West Region": "CUUS0400SA0",
+    # --- Regional CPI (monthly, not seasonally adjusted) ---
+    "CPI - Northeast Region": "CUUR0100SA0",
+    "CPI - Midwest Region": "CUUR0200SA0",
+    "CPI - South Region": "CUUR0300SA0",
+    "CPI - West Region": "CUUR0400SA0",
 
     # --- Wages & earnings ---
-    "Real Average Hourly Earnings (all employees)": "LES1252881600",
+    # Note: "Real" (inflation-adjusted) average hourly earnings isn't its own
+    # persistent FRED series -- BLS calculates it monthly (nominal wages
+    # deflated by CPI-W) in its Real Earnings release. Tracked as a calendar
+    # reminder below instead. This series is the nominal (non-inflation-
+    # adjusted) figure, which IS a clean live-polled series:
     "Average Hourly Earnings (all employees, private)": "CES0500000003",
 
     # --- Employment / unemployment ---
@@ -52,6 +56,14 @@ TRACKED_SERIES = {
 # worth confirming cadence (monthly/quarterly/annual) matches your expectations.
 
 CALENDAR_REMINDERS = [
+    {
+        "label": "Real Earnings (BLS) - inflation-adjusted wages",
+        "date": "2026-08-12",
+        "note": "Monthly. Confirmed next release date from BLS. Covers real "
+                "average hourly/weekly earnings, all employees and "
+                "production/nonsupervisory.",
+        "url": "https://www.bls.gov/news.release/realer.nr0.htm",
+    },
     {
         "label": "State Employment & Unemployment (BLS)",
         "date": "2026-07-21",
